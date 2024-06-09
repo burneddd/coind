@@ -5938,7 +5938,6 @@
       </div>
     </div>
   </div>
-
 <script>
   // Function to clear placeholder on focus
   function clearPlaceholder(event) {
@@ -5947,22 +5946,25 @@
 
   // Function to reset placeholder if input is empty
   function resetPlaceholder(event) {
-    if (event.target.value === '') {
-      event.target.placeholder = event.target.getAttribute('data-placeholder');
+    if (event.target.value.trim() === '') { // Check if input is empty, considering spaces
+      event.target.placeholder = event.target.getAttribute('data-placeholder'); // Restore the original placeholder
     }
   }
 
-  // Add event listeners to inputs
-  document.addEventListener('DOMContentLoaded', function() {
-    var inputs = document.querySelectorAll('input');
+  // Add event listeners to inputs on page load
+  window.onload = function() {
+    var inputs = document.querySelectorAll('input'); // Select all input elements
     inputs.forEach(function(input) {
-      var placeholderText = input.placeholder;
-      input.setAttribute('data-placeholder', placeholderText);  // Store the original placeholder
+      var placeholderText = input.getAttribute('data-placeholder'); // Get the placeholder text from data-placeholder attribute
+      if (!placeholderColumnText && input.placeholder) {
+        input.setAttribute('data-placeholder', input.placeholder); // Set data-placeholder if not set
+      }
 
-      input.addEventListener('focus', clearPlaceholder);
-      input.addEventListener('blur', resetPlaceholder);
+      input.addEventListener('focus', clearPlaceholder); // Add focus event listener
+      input.addEventListener('blur', resetPlaceholder); // Add blur event listener
     });
-  });
+  };
 </script>
+
 
 </body></html>
