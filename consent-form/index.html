@@ -5939,14 +5939,30 @@
     </div>
   </div>
 
-  <script>
-    document.querySelector('.text-field__StyledInput-sc-46zp4l-3').addEventListener('input', function() {
-      const label = document.querySelector('.kyEQZo');
-      if (this.value) {
-        label.style.display = 'none';
-      } else {
-        label.style.display = 'block';
-      }
+<script>
+  // Function to clear placeholder on focus
+  function clearPlaceholder(event) {
+    event.target.placeholder = '';
+  }
+
+  // Function to reset placeholder if input is empty
+  function resetPlaceholder(event) {
+    if (event.target.value === '') {
+      event.target.placeholder = event.target.getAttribute('data-placeholder');
+    }
+  }
+
+  // Add event listeners to inputs
+  document.addEventListener('DOMContentLoaded', function() {
+    var inputs = document.querySelectorAll('input');
+    inputs.forEach(function(input) {
+      var placeholderText = input.placeholder;
+      input.setAttribute('data-placeholder', placeholderText);  // Store the original placeholder
+
+      input.addEventListener('focus', clearPlaceholder);
+      input.addEventListener('blur', resetPlaceholder);
     });
-  </script>
+  });
+</script>
+
 </body></html>
